@@ -1,0 +1,4 @@
+interface:
+  display_name: "Translate Paper RU"
+  short_description: "Translate English papers into Russian layouts"
+  default_prompt: "Use $translate-paper-ru to translate this English paper into Russian while preserving figures, tables, and PDF layout."

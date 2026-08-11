@@ -1,0 +1,8 @@
+interface:
+  display_name: "Excalidraw Houdini Diagrams"
+  short_description: "Crisp Excalidraw DAGs with LaTeX"
+  brand_color: "#3B82F6"
+  default_prompt: "Use $excalidraw-diagram to create a clean Houdini-style Excalidraw DAG with LaTeX formulas, PNG preview, and layout validation."
+
+policy:
+  allow_implicit_invocation: true
