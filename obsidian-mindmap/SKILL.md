@@ -1,17 +1,11 @@
 ---
 name: obsidian-mindmap
 description: >-
-  Generate detailed, recursively-collapsible mind-map notes for Billy's Obsidian vault (billynotes),
-  rendered by the Mindmap NextGen plugin (markmap engine). Use whenever the user wants a "майндмапа /
-  mindmap / mind map / интеллект-карта" of a topic, a structured tree/overview/декомпозицию of a subject
-  (ML/DL architectures, a codebase, a plan, study notes, a research area), says "сделай/набросай/построй
-  майндмапу X", "дерево по теме", "mind map of X", or asks to add/expand/свернуть branches in an existing
-  one. Encodes the exact markmap markdown format (H1 root → headings → nested bullet lists = recursively
-  foldable subtrees), the YAML frontmatter options (initialExpandLevel / colorFreezeLevel / maxWidth /
-  spacing), the LaTeX-via-KaTeX rule (all math in $...$, Cyrillic stays OUT of math nodes), the billynotes
-  root path + "(mindmap)" file-naming, and the #1 gotcha — how to actually OPEN it (command palette:
-  "Mindmap NextGen: Pin" → "Open pinned mindmap"; it does NOT toggle like reading view). Covers document
-  vs code-block modes and Yandex-S3 sync. macOS; plugin already installed + enabled.
+  Create or update detailed, recursively collapsible mind-map notes in Billy's Obsidian vault
+  (billynotes) using Mindmap NextGen and markmap. Use when the user asks for a "майндмапа", mind map,
+  интеллект-карта, structured tree, topic decomposition, or wants branches added, expanded, or folded
+  in an existing map. Covers the required heading-and-list Markdown structure, plugin frontmatter,
+  KaTeX formulas, vault naming and opening workflow, document and code-block modes, and Yandex S3 sync.
 ---
 
 # Obsidian mindmaps (Mindmap NextGen / markmap)

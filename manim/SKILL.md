@@ -1,17 +1,12 @@
 ---
 name: manim
 description: >-
-  Author and render clear, pedagogical Manim Community Edition animations — math/ML concept
-  explainers (self-attention / transformers, backprop & gradient flow, neural nets, softmax,
-  positional encoding, gradient descent, loss curves) as MP4/GIF on macOS. Use whenever the user
-  wants a Manim scene, a "видео из манима", an animated explanation of a formula or algorithm, to
-  set up Manim, or to debug a Manim render error. Encodes the non-negotiable rules that make
-  LLM-written Manim actually RUN: Community Edition ONLY (never manimlib / ManimGL / 3b1b source
-  verbatim), raw-string LaTeX, a verified-API cheatsheet + forbidden-API list, the plan→render→fix
-  loop (lifts first-try success from ~7% to ~93%), ML scene templates with 3Blue1Brown color/pacing
-  conventions, macOS setup (Python 3.12 via uv — manim has NO 3.14 wheels — brew cairo/pango, then
-  `manim checkhealth`), render-flag quick reference, and the Cyrillic-text rule (use Text(font=...),
-  never put Cyrillic in MathTex). Billy is all-in on Manim: dark theme, Russian labels, step-by-step.
+  Create, render, or debug pedagogical animations with Manim Community Edition on macOS, including
+  MP4/GIF math and ML explainers for transformers, neural networks, gradient descent, formulas, and
+  algorithms. Use when the user asks for a Manim scene or "видео из манима", wants an animated
+  explanation, needs Manim setup, or has a render error. Covers reliable Community Edition APIs,
+  LaTeX and Cyrillic text, dark 3Blue1Brown-style pacing, Python 3.12 setup, and the plan→render→fix
+  workflow.
   Built 2026-06-19 from a 5-agent research sweep of docs, benchmarks (ManiBench, TheoremExplainAgent)
   and other devs' Manim skills.
 ---
