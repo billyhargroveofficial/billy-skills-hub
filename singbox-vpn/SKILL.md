@@ -30,11 +30,17 @@ MCP `initialize` through Hysteria2 returned HTTP 200 with a valid handshake.
 
 **Direct exceptions (NOT tunneled):** `ip_is_private` (LAN/localhost), `protocol: bittorrent`,
 and rule-sets `ru-inside` (geosite-ru-available-only-inside), `yandex` (geosite + geoip), `steam`
-(geosite), `valve` (geoip — Dota/CS game servers, see below), plus service exceptions like `avito`,
+(geosite), `valve` (geoip — Dota/CS game servers, see below), plus service exceptions like
 `cian`, `bybit`, `vseinstrumenti`, `kimi`, `samokat`, `boosty`, and `search` (source rule-set
 `rule-sets/search.json` — search-engine domains duckduckgo/google-search/bing/brave/startpage/mojeek/
 qwant/ecosia routed residential so the LOCAL SearXNG MCP + ddgs dodge datacenter CAPTCHAs; added 2026-07-24). WARP rule-sets go → `warp`;
 everything else → `proxy`.
+**Avito is explicit `proxy` as of 2026-08-20**, not direct: Mac Wi-Fi is a different NAT than mujik
+(`192.168.0.102` → Rostelecom Kaluga `94.242.171.204`, AS12389). QRATOR returns HTTP 429
+«Доступ ограничен: проблема с IP» for browser UA from that IP; the same Chrome UA from hy2
+egress `91.201.114.192` is 200. Hermes Desktop's right-rail preview is a local Electron URL
+view on the Mac, so it uses the Mac IP — mujik remaining direct (MGTS `109.252.26.165`) does
+not help the preview. Rule-set tag `avito` is kept, wired like `chatgpt` → `proxy`.
 
 Full human docs + config backup live in `~/Documents/billynotes/vpn/clients/singbox-mac/`
 (`README.md`, `CONFIG.md`, `config.json`, `config-allproxy.json`). Keep them and this skill in sync after changes.
@@ -160,11 +166,12 @@ want one back, recreate `/Users/billy/sing-box/rule-sets/my-rules.json` with **`
 
 ## How config.json works (route rules, top→bottom) — INVERTED
 `sniff` (get domain + detect bittorrent) → `hijack-dns` (DNS into sing-box module) →
-`protocol:quic→reject` → `rule_set[chatgpt]→proxy` → `rule_set[midjourney, claude, gemini]→warp` →
+`protocol:quic→reject` → `rule_set[avito]→proxy` → `rule_set[chatgpt]→proxy` → `rule_set[midjourney, claude, gemini]→warp` →
 `ip_is_private→direct` → `protocol:bittorrent→direct` →
-`rule_set[ru-inside, yandex, yandex-ip, steam, valve, avito, cian, bybit, vseinstrumenti, kimi, samokat, boosty, search]→direct` → **`final: proxy`** (everything else).
+`rule_set[ru-inside, yandex, yandex-ip, steam, valve, cian, bybit, vseinstrumenti, kimi, samokat, boosty, search]→direct` → **`final: proxy`** (everything else).
 DNS: `dns.final = dns-remote` (8.8.8.8 via hy2, anti-poisoning) for all tunneled traffic;
-the domain exceptions (ru-inside, yandex, steam, avito, cian, bybit, vseinstrumenti, kimi, samokat, boosty, search) → `dns-local` (resolve to nearest/local node);
+the domain exceptions (ru-inside, yandex, steam, cian, bybit, vseinstrumenti, kimi, samokat, boosty, search) → `dns-local` (resolve to nearest/local node);
+avito is NOT in `dns-local` (it rides `dns-remote` via hy2, same as other tunneled sites);
 WARP domains are NOT in `dns-local`, so they resolve via `dns-remote`; `strategy: ipv4_only`;
 `default_domain_resolver = dns-remote`. Don't use sing-box's built-in `set_system_proxy` — bug #3529
 crashes with TUN on macOS 26.
